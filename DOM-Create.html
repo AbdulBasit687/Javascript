@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM-Creation</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("Laravel");
+    addLanguage("Python");
+
+    //For More Optemize Version to create DOM Element we can use this method:
+
+    function addNewLangauege(langName){
+        const li =document.createElement('li');
+        li.appendChild(document.createTextNode(langName)) 
+        //if we compare this function with above function we can see that,here we have use createTextNode function which is more optemize and it creating a node directly without creating a new variable.
+        document.querySelector('.language').appendChild(li)
+    }
+    addNewLangauege('Swift');
+
+    //----TO EDIT CONTENT USING DOM------
+
+    const SecondLang = document.querySelector("li:nth-child(2)") //the "li:nth-child(2)" means we are selecting the second child from li section which is laravel.
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    SecondLang.replaceWith(newli)
+
+    //--To Edit a complete Element-----
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<l1>TypeScript</li>'
+
+    //---To remove and element using DOM-----
+    const lastLang = document.querySelector("li:last-child")
+    lastLang.remove();
+</script>
+</html>
